@@ -6,8 +6,9 @@
 import "./App.css";
 import React, { useState } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { MdDelete } from 'react-icons/md';
+
 import NovaTarefa from "./components/NovaTarefa";
+import ListaTarefas from "./components/ListaTarefas";
 
 
 const App = () => {
@@ -35,28 +36,8 @@ const App = () => {
       </header>
       <section className="main">
         <NovaTarefa onNewTodo={onNewTodo}/>
-
-        <ul className="todo-list">
-
-          {
-            todos.map((todo) => (
-              // precisa do key para diferenciar de outros elementos dentro do react
-              <li key={todo.id.toString()}>
-                <span className={['todo', todo.checked ? 'checked' : ""].join(' ')} // deve forca o join separar por espaco e nao por ,
-                  onClick={() => ontoggle(todo)}
-                  onKeyPress={() => ontoggle(todo)}
-                  role="button"
-                  tabIndex={0}>{todo.title}</span>
-                <button type="button" className="remove" onClick={()=> onRemove(todo)}>
-                  <MdDelete size={28} />
-                </button>
-              </li>
-            ))
-          }
-        </ul>
+        <ListaTarefas todos={todos} ontoggle={ontoggle} onRemove={onRemove}/>
       </section>
-
-
     </section>
   )
 }
