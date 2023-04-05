@@ -3,24 +3,33 @@
 
 import "./App.css";
 import React, { useState } from "react";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { MdDelete } from 'react-icons/md';
 
 
-const App = () =>{
+const App = () => {
   const enterKey = 13;
   const escKey = 27;
 
+  const initialTodos = [
+    { id: 1, title: 'Estudar React', checked: false },
+    { id: 2, title: 'Estudar Boostrap', checked: true },
+    { id: 3, title: 'Ir na academia', checked: false },
+  ];
+
+  const [todos, ] = useState(initialTodos);
   const [value, setValue] = useState('');
 
-  const erase = ()=>{
+  const erase = () => {
     setValue('');
   }
 
-  const submit = ()=>{
+  const submit = () => {
     console.log(value);
     erase();
   }
 
-  const onChange = (event)=>{
+  const onChange = (event) => {
     // event e a forma para receber parametros de um input
     setValue(event.target.value)
   }
@@ -41,10 +50,24 @@ const App = () =>{
       </header>
       <section className="main">
         <input className="new-todo"
-        placeholder="Insira sua tarefa aqui"
-        value={value}
-        onChange={onChange}
-        onKeyDown={onKeyDown}/>
+          placeholder="Insira sua tarefa aqui"
+          value={value}
+          onChange={onChange}
+          onKeyDown={onKeyDown} />
+        <ul className="todo-list">
+
+          {
+            todos.map((todo) => (
+              // precisa do key para diferenciar de outros elementos dentro do react
+              <li key={todo.id.toString()}>
+                <span className="todo">{todo.title}</span>
+                <button type="button" className="remove">
+                  <MdDelete size={28}/>
+                </button>
+                </li>
+            ))
+          }
+        </ul>
       </section>
 
 
