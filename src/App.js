@@ -1,42 +1,23 @@
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable react/function-component-definition */
 
+
+// manipulaçao de dados acontece no app
 import "./App.css";
 import React, { useState } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { MdDelete } from 'react-icons/md';
+import NovaTarefa from "./components/NovaTarefa";
 
 
 const App = () => {
-  const enterKey = 13;
-  const escKey = 27;
 
 
   const [todos, setTodos] = useState([]);
-  const [value, setValue] = useState('');
 
-  const erase = () => {
-    setValue('');
-  }
 
-  const submit = () => {
-    // biblioteca uuid ou utilizar numeros ramdomicos para gerar id
+  const onNewTodo = (value) => {
     setTodos([...todos, { id: new Date().getTime(), title: value, checked: false }])
-
-    erase();
-  }
-
-  const onChange = (event) => {
-    // event e a forma para receber parametros de um input
-    setValue(event.target.value)
-  }
-  const onKeyDown = (event) => {
-    // codigos teclas : https://www.asciitable.com/
-    if (event.which === enterKey) {
-      submit();
-    } else if (event.which === escKey) {
-      erase();
-    }
   }
 
   const ontoggle = (todo) => {
@@ -53,11 +34,8 @@ const App = () => {
         <h1 className="title d">Todo</h1>
       </header>
       <section className="main">
-        <input className="new-todo"
-          placeholder="Insira sua tarefa aqui"
-          value={value}
-          onChange={onChange}
-          onKeyDown={onKeyDown} />
+        <NovaTarefa onNewTodo={onNewTodo}/>
+
         <ul className="todo-list">
 
           {
