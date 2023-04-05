@@ -11,13 +11,8 @@ const App = () => {
   const enterKey = 13;
   const escKey = 27;
 
-  const initialTodos = [
-    { id: 1, title: 'Estudar React', checked: false },
-    { id: 2, title: 'Estudar Boostrap', checked: true },
-    { id: 3, title: 'Ir na academia', checked: false },
-  ];
 
-  const [todos, ] = useState(initialTodos);
+  const [todos, setTodos] = useState([]);
   const [value, setValue] = useState('');
 
   const erase = () => {
@@ -25,7 +20,9 @@ const App = () => {
   }
 
   const submit = () => {
-    console.log(value);
+    // biblioteca uiniqueid
+    setTodos([...todos,{id: new Date().getTime(), title: value, checked: false}])
+
     erase();
   }
 
