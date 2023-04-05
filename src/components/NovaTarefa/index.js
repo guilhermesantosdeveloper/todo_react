@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types'
+import './styles.css'
 
 // eslint-disable-next-line react/function-component-definition, react/jsx-filename-extension
 const NovaTarefa = ({ onNewTodo }) => {

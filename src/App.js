@@ -3,7 +3,6 @@
 
 
 // manipulaçao de dados acontece no app
-import "./App.css";
 import React, { useState } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 

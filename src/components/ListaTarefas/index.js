@@ -2,7 +2,7 @@ import React from 'react'
 import { MdDelete } from 'react-icons/md';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types'
-
+import './styles.css'
 
 function ListaTarefas({ todos, ontoggle, onRemove }) {
   // eslint-disable-next-line react/jsx-filename-extension
