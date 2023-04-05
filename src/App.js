@@ -20,8 +20,8 @@ const App = () => {
   }
 
   const submit = () => {
-    // biblioteca uiniqueid
-    setTodos([...todos,{id: new Date().getTime(), title: value, checked: false}])
+    // biblioteca uuid ou utilizar numeros ramdomicos para gerar id
+    setTodos([...todos, { id: new Date().getTime(), title: value, checked: false }])
 
     erase();
   }
@@ -37,6 +37,11 @@ const App = () => {
     } else if (event.which === escKey) {
       erase();
     }
+  }
+
+  const ontoggle = (todo) => {
+    setTodos(todos.map((obj) => (obj.id === todo.id ? { ...obj, checked: !todo.checked } : obj)))
+
   }
 
 
@@ -57,11 +62,15 @@ const App = () => {
             todos.map((todo) => (
               // precisa do key para diferenciar de outros elementos dentro do react
               <li key={todo.id.toString()}>
-                <span className="todo">{todo.title}</span>
+                <span className={['todo', todo.checked ? 'checked' : ""].join(' ')} // deve forca o join separar por espaco e nao por ,
+                  onClick={() => ontoggle(todo)}
+                  onKeyPress={() => ontoggle(todo)}
+                  role="button"
+                  tabIndex={0}>{todo.title}</span>
                 <button type="button" className="remove">
-                  <MdDelete size={28}/>
+                  <MdDelete size={28} />
                 </button>
-                </li>
+              </li>
             ))
           }
         </ul>
