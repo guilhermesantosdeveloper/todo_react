@@ -43,7 +43,9 @@ const App = () => {
     setTodos(todos.map((obj) => (obj.id === todo.id ? { ...obj, checked: !todo.checked } : obj)))
 
   }
-
+  const onRemove = (todo) => {
+    setTodos(todos.filter((obj)=> obj.id !== todo.id))
+  }
 
   return (
     <section id="app" className="container">
@@ -67,7 +69,7 @@ const App = () => {
                   onKeyPress={() => ontoggle(todo)}
                   role="button"
                   tabIndex={0}>{todo.title}</span>
-                <button type="button" className="remove">
+                <button type="button" className="remove" onClick={()=> onRemove(todo)}>
                   <MdDelete size={28} />
                 </button>
               </li>
